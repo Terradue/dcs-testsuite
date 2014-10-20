@@ -6,5 +6,5 @@ This test aims to verify the correct behaviour of the anonynimous feature of cio
 
 References:
 
-https://project.terradue.com/issues/9599
-https://project.terradue.com/issues/9746
+* https://project.terradue.com/issues/9599
+* https://project.terradue.com/issues/9746
