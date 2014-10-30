@@ -21,5 +21,5 @@ mvn clean install -Ddcs.test.id=test001
 
 ## Available Tests
 
-* [test001 - Developer Cloud Sandbox Hands-On](src/main/app-resources/test001/README.md)
+* [test001 - Developer Cloud Sandbox Hands-On Exercises 1-10](src/main/app-resources/test001/README.md)
 * [test002 - ciop-publish feature #9746](src/main/app-resources/test002/README.md)
