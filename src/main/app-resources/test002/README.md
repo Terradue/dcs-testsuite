@@ -1,17 +1,10 @@
-# test001
+# test002
 
 ## Purpose
 
-This test aims to verify the correct behaviour of the complete workflow built through the Developer Cloud Sandbox Hands-On Exercises 1-10.
-
-## Prerequisites
-
-* Install the required packages:
-
-```
-sudo yum install -y esa-beam-4.11 ImageMagick
-```
+This test aims to verify the correct behaviour of the anonynimous feature of ciop-publish.
 
 References:
 
-* http://docs.terradue.com/developer-sandbox/developer/index.html
+* https://project.terradue.com/issues/9599
+* https://project.terradue.com/issues/9746
