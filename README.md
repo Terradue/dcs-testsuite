@@ -2,9 +2,9 @@
 
 ## Installation 
 
-Log on your Developer Cloud Sandbox host.
+* Log on your Developer Cloud Sandbox host.
 
-Run these commands in a shell:
+* Run these commands in a shell:
 
 ```bash
 cd ~
