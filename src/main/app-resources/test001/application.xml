@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<application id="beam_arithm">
+<application id="test001">
   <jobTemplates>
     <!-- BEAM BandMaths operator job template  -->
     <jobTemplate id="expression">
@@ -50,7 +50,7 @@ sample8=101.80430145795337</parameter>
             </defaultJobconf>
     </jobTemplate>
   </jobTemplates>
-    <workflow id="beam_arithm" title="BEAM Algal bloom detection" abstract="This application uses BEAM to detect algal blooms">           
+    <workflow id="test001" title="BEAM Algal bloom detection" abstract="This application uses BEAM to detect algal blooms">           
     <workflowVersion>1.0</workflowVersion>
     <node id="node_expression">       
       <job id="expression"></job>     
