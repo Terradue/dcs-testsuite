@@ -21,6 +21,10 @@ function cleanExit ()
 }
 trap cleanExit EXIT
 
+# issue #11874
+ciop-log "INFO" "`ciop-getparam param1`"
+ciop-log "INFO" "`ciop-getparam param2`"
+
 while read product
 do
 	ciop-log "INFO" "Retrieved: $product"

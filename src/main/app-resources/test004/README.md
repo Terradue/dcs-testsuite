@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This test aims to verify the correct behaviour of the framework using multiple starting nodes and multiple ending nodes.
+This test aims mainly to verify the correct behaviour of the framework using multiple ending nodes. Minor bugs are verified also (see *Internal references*).
 
 ## Prerequisites
 
@@ -16,8 +16,8 @@ N.A.
 $ ciop-run
 ```
 
-* Type the command:
+## Internal references
 
-```
-$ ciop-simwf
-```
+http://project.terradue.com/issues/11992
+http://project.terradue.com/issues/11874
+

@@ -3,6 +3,10 @@
   <jobTemplates>
     <jobTemplate id="template">
       <streamingExecutable>/application/node/run.sh</streamingExecutable>
+      <defaultParameters>
+              <parameter id="param1">one</parameter>
+              <parameter id="param2">two</parameter>
+      </defaultParameters>
     </jobTemplate>
   </jobTemplates>
     <workflow id="test004" title="Multiple starting nodes" abstract="This tests a workflow with multiple starting nodes and multiple ending nodes">           
