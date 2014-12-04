@@ -5,39 +5,24 @@
       <streamingExecutable>/application/node/run.sh</streamingExecutable>
     </jobTemplate>
   </jobTemplates>
-    <workflow id="test004" title="Multiple sources" abstract="This tests a workflow with multiple starting nodes and multiple ending nodes">           
+    <workflow id="test004" title="Multiple starting nodes" abstract="This tests a workflow with multiple starting nodes and multiple ending nodes">           
     <workflowVersion>1.0</workflowVersion>
-    <node id="node-1.a">       
+    <node id="node-1">       
       <job id="template"></job>     
       <sources>
         <source refid="string:list">input1,input2</source>
       </sources>
     </node>
-    <node id="node-1.b">       
+    <node id="node-2a">       
       <job id="template"></job>     
       <sources>
-        <source refid="string:list">input3,input4</source>
+        <source refid="wf:node">node-1</source>
       </sources>
     </node>
-    <node id="node-2.a">       
+    <node id="node-2b">       
       <job id="template"></job>     
       <sources>
-        <source refid="wf:node">node-1.a</source>
-        <source refid="wf:node">node-1.b</source>
-      </sources>
-    </node>
-    <node id="node-2.b">       
-      <job id="template"></job>     
-      <sources>
-        <source refid="wf:node">node-1.a</source>
-        <source refid="wf:node">node-1.b</source>
-      </sources>
-    </node>
-    <node id="node-2.c">       
-      <job id="template"></job>     
-      <sources>
-        <source refid="wf:node">node-1.a</source>
-        <source refid="wf:node">node-1.b</source>
+        <source refid="wf:node">node-1</source>
       </sources>
     </node>
   </workflow>
