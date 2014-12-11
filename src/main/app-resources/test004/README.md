@@ -1,4 +1,4 @@
-# test003
+# test004 - Multiple ending nodes
 
 ## Purpose
 
@@ -18,6 +18,6 @@ $ ciop-run
 
 ## Internal references
 
-http://project.terradue.com/issues/11992
-http://project.terradue.com/issues/11874
+* http://project.terradue.com/issues/11992
+* http://project.terradue.com/issues/11874
 
