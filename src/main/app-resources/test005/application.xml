@@ -24,7 +24,7 @@
     <node id="wps_client">       
       <job id="wps"></job>
       <sources>
-        <source refid="string:list">string1</source>
+        <source refid="string:list" id="test">string3,string4</source>
       </sources> 
     </node>
   </workflow>
