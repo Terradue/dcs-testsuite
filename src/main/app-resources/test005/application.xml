@@ -22,10 +22,10 @@
     <workflow id="test005" title="WPS Action" abstract="This tests a workflow that calls a remote WPS">           
     <workflowVersion>1.0</workflowVersion>
     <node id="wps_client">       
-      <job id="wps"></job>     
-    </node>
-    <node id="node">       
-      <job id="template"></job>     
+      <job id="wps"></job>
+      <sources>
+        <source refid="string:list">string1</source>
+      </sources> 
     </node>
   </workflow>
 </application>
