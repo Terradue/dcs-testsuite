@@ -8,7 +8,7 @@
         <parameter id="qbbox">-9.32,45.21,2.29,52.16</parameter> 
       </defaultParameters>
       <defaultJobconf>
-          <property id="ogc.wps.access.point">http://10.16.10.56:8080/wps/WebProcessingService</property>
+          <property id="ogc.wps.access.point">http://${ogc.wps.access.point}:8080/wps/WebProcessingService</property>
           <property id="ogc.wps.process.identifier">com.terradue.wps_oozie.process.OozieAbstractAlgorithm</property>
           <property id="ogc.wps.storeExecuteResponse">true</property>
           <property id="ogc.wps.status">true</property>

@@ -8,6 +8,14 @@ This test aims mainly to verify the correct behaviour of the framework using a W
 
 * To have a working WPS server that exposes the Application defined in [test001](/src/main/app-resources/test001/README.md)
 
+## Installation
+
+* Type:
+
+```
+$ mvn clean install -Ddcs.test.id=test005 -Dogc.wps.access.point=<WPS access point IP/hostname>
+```
+
 ## Test procedure
 
 * Type the command:
