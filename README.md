@@ -2,7 +2,13 @@
 
 ## Installation 
 
-* Log on your Developer Cloud Sandbox host.
+* Log on your Developer Cloud Sandbox host
+
+* Install needed packages:
+
+```bash
+$ sudo yum install -y esa-beam-4.11 ImageMagick
+```
 
 * Run these commands in a shell:
 
