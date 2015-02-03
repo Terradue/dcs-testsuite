@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application id="test003">
+  <jobTemplates>
+    <jobTemplate id="template">
+      <streamingExecutable>/application/node/run.sh</streamingExecutable>
+      <defaultParameters>           
+        <parameter id="startdate" title="Start date" abstract="Start date of the TOI." scope="runtime" type="opensearch" target="time:start">2002-04-05</parameter>
+        <parameter id="enddate" title="End date" abstract="End date of the TOI." scope="runtime" type="opensearch" target="time:end">2012-04-06</parameter>
+      </defaultParameters>
+    </jobTemplate>
+  </jobTemplates>
+    <workflow id="test003" title="Example title" abstract="Example abstract">           
+    <workflowVersion>1.0</workflowVersion>
+    <node id="node">       
+      <job id="template"></job>     
+      <sources>
+        <source refid="cas:series">https://challenges.esa.int/eceo/datapackage/RRPAR/description?key=9d79148d-3e17-414b-9983-e4cef9e88ec6</source>
+      </sources>
+      <parameters>          
+      </parameters>
+    </node>
+  </workflow>
+</application>

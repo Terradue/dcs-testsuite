@@ -2,7 +2,13 @@
 
 ## Installation 
 
-* Log on your Developer Cloud Sandbox host.
+* Log on your Developer Cloud Sandbox host
+
+* Install needed packages:
+
+```bash
+$ sudo yum install -y esa-beam-4.11 ImageMagick
+```
 
 * Run these commands in a shell:
 
@@ -23,3 +29,6 @@ mvn clean install -Ddcs.test.id=test001
 
 * [test001 - Developer Cloud Sandbox Hands-On Exercises 1-10](src/main/app-resources/test001/README.md)
 * [test002 - ciop-publish feature #9746](src/main/app-resources/test002/README.md)
+* [test003 - Data packages as source](src/main/app-resources/test003/README.md)
+* [test004 - Workflow ending with multiple nodes](src/main/app-resources/test004/README.md)
+* [test005 - WPS Action](src/main/app-resources/test005/README.md)

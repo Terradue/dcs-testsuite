@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application id="test005">
+  <jobTemplates>
+    <jobTemplate id="wps" jobType="wps_client">
+      <defaultParameters>
+        <parameter id="startdate">2012-04-06T10:24:29.000Z</parameter>
+        <parameter id="enddate">2012-04-07</parameter>
+        <parameter id="qbbox">-9.32,45.21,2.29,52.16</parameter> 
+      </defaultParameters>
+      <defaultJobconf>
+          <property id="ogc.wps.access.point">http://${ogc.wps.access.point}:8080/wps/WebProcessingService</property>
+          <property id="ogc.wps.process.identifier">com.terradue.wps_oozie.process.OozieAbstractAlgorithm</property>
+          <property id="ogc.wps.storeExecuteResponse">true</property>
+          <property id="ogc.wps.status">true</property>
+          <property id="mapred.task.timeout">3600000</property>
+          <property id="ciop.job.max.tasks">1</property>
+       </defaultJobconf>
+    </jobTemplate>
+    <jobTemplate id="wps" jobType="wps_client">
+    </jobTemplate>
+  </jobTemplates>
+    <workflow id="test005" title="WPS Action" abstract="This tests a workflow that calls a remote WPS">           
+    <workflowVersion>1.0</workflowVersion>
+    <node id="wps_client">       
+      <job id="wps"></job>
+      <sources>
+        <source refid="string:list" id="test">string3,string4</source>
+      </sources> 
+    </node>
+  </workflow>
+</application>

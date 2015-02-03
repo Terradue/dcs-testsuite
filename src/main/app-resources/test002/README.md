@@ -1,4 +1,4 @@
-# test002
+# test002 - Publish anonynimously
 
 ## Purpose
 

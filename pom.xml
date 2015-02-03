@@ -7,7 +7,7 @@
 	<packaging>pom</packaging>
 	<name>dcs-testsuite</name>
 	<description>dcs-testsuite</description>
-	<version>0.1-SNAPSHOT</version>
+	<version>0.1</version>
 	<scm>
 		<connection>scm:git:git@github.com:crossi-T2/dcs-testsuite.git</connection>
 		<developerConnection>scm:git:git@github.com:crossi-T2/dcs-testsuite.git</developerConnection>
@@ -23,6 +23,7 @@
 		<github.site.repositoryName>dcs-testsuite</github.site.repositoryName>
 		<github.site.repositoryOwner>crossi-T2</github.site.repositoryOwner>
 		<dcs.test.id></dcs.test.id>
+		<ogc.wps.access.point></ogc.wps.access.point>
 	</properties>
 	<repositories>
 		<repository>
@@ -91,6 +92,7 @@
 							<resources>
 								<resource>
 									<directory>${basedir}/src/main/app-resources/${dcs.test.id}</directory>
+									<filtering>true</filtering>
 								</resource>
 							</resources>
 						</configuration>
