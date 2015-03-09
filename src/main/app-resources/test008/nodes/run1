@@ -26,8 +26,6 @@ def clean_exit(exit_code):
 
 def main():
 
-    ciop.wf_run_root = os.path.join(os.environ['_CIOP_SHARE_PATH'], os.environ['ciop_wf_run_root'][1:])
-
     # Loops over all the inputs
     for inputfile in sys.stdin:
 
