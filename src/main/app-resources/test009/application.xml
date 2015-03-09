@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application id="test_suite">
+  <jobTemplates>
+    <jobTemplate id="template1">
+      <streamingExecutable>/application/nodes/run</streamingExecutable>
+      <defaultParameters>
+        <parameter id="test_1" title="A validation parameter" abstract="A parameter usefull for testing" scope="runtime">1</parameter>
+        <parameter id="test_2" title="A validation parameter" abstract="A parameter usefull for testing" scope="runtime">2</parameter>
+      </defaultParameters>
+    </jobTemplate>
+  </jobTemplates>
+  <workflow id="test_suite" title="Test suite 9" abstract="This test check the ciop.getparam">
+    <workflowVersion>1.0</workflowVersion>
+    <node id="node1">
+      <job id="template1"></job>
+      <sources>
+        <source refid="file:urls">/application/inputs/list</source>
+      </sources>
+      <parameters/>
+    </node>
+  </workflow>
+</application>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application id="test_suite">
+  <jobTemplates>
+    <jobTemplate id="template1">
+      <streamingExecutable>/application/nodes/run1</streamingExecutable>
+      <defaultParameters/>
+    </jobTemplate>
+    <jobTemplate id="template2">
+      <streamingExecutable>/application/nodes/run2</streamingExecutable>
+      <defaultParameters/>
+    </jobTemplate>
+  </jobTemplates>
+  <workflow id="test_suite" title="Test suite 8" abstract="This test check the ciop.publish mode=anonymous option">
+    <workflowVersion>1.0</workflowVersion>
+    <node id="node1">
+      <job id="template1"></job>
+      <sources>
+        <source refid="file:urls">/application/inputs/list</source>
+      </sources>
+      <parameters/>
+    </node>
+    <node id="node2">
+      <job id="template2"></job>
+      <sources>
+        <source refid="wf:node">node1</source>
+      </sources>
+      <parameters/>
+    </node>
+  </workflow>
+</application>

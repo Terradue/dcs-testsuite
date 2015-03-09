@@ -1,0 +1,68 @@
+#!/opt/anaconda/bin/python
+import sys
+import os
+import os.path
+import atexit
+
+# import the ciop functions (e.g. copy, log)
+import cioppy
+
+ciop = cioppy.Cioppy()
+
+# define the exit codes
+SUCCESS = 0
+ERR_NOINPUT = 1
+
+# add a trap to exit gracefully
+def clean_exit(exit_code):
+    log_level = 'INFO'
+    if exit_code != SUCCESS:
+        log_level = 'ERROR'
+
+    msg = { SUCCESS: 'Processing successfully concluded',
+           ERR_NOINPUT: 'No input provided'}
+
+    ciop.log(log_level, msg[exit_code])
+
+def main():
+
+    ciop.wf_run_root = os.path.join(os.environ['_CIOP_SHARE_PATH'], os.environ['ciop_wf_run_root'][1:])
+    
+    # Loops over all the inputs
+    for inputfile in sys.stdin:
+        base_output_dir = "output_" + os.path.basename(inputfile.rstrip('\n'))
+        outputDir = os.path.join(ciop.tmp_dir, base_output_dir)
+        os.makedirs(outputDir)
+        
+        retrieved = ciop.copy(inputfile, outputDir, False)
+        ciop.log("INFO", "Retrieved " + retrieved)
+
+        ciop.log("INFO", "Verify " + outputDir + " dir exists")
+        assert(os.path.exists( outputDir ) == True)
+        ciop.log("INFO", outputDir + " verified" )
+
+        ciop.log("INFO", "Verify " + os.path.basename(inputfile) + " copied in " + outputDir)
+        assert(os.path.isfile(retrieved) == True)
+        ciop.log("INFO", retrieved + " verified" )
+
+        ciop.publish(outputDir, recursive=True, metalink=True) 
+
+        ciop.log('INFO', 'Checking ' + os.path.join(ciop.wf_run_root+'/_results', base_output_dir))
+        assert(os.path.exists(os.path.join(ciop.wf_run_root+'/_results', base_output_dir)) == True)
+        ciop.log("INFO", os.path.join(ciop.wf_run_root+'/_results', base_output_dir) + " verified" )
+
+        ciop.log('INFO', 'Checking ' + os.path.join(ciop.wf_run_root+'/_results', base_output_dir, os.path.basename(inputfile.rstrip('\n'))))
+        assert(os.path.isfile(os.path.join(ciop.wf_run_root+'/_results', base_output_dir, os.path.basename(inputfile.rstrip('\n')))) == True)
+        ciop.log("INFO", os.path.join(ciop.wf_run_root+'/_results', base_output_dir, os.path.basename(inputfile.rstrip('\n'))) + " verified" )
+
+        #assert(os.path.isfile(os.path.join(os.environ['mapred_local_dir'], "work/tmp/_streaming.results.out")) == True)    
+        
+# execute test
+try:
+    main()
+except SystemExit as e:
+    if e.args[0]:
+        clean_exit(e.args[0])
+    raise
+else:
+    atexit.register(clean_exit, 0)
