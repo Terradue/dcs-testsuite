@@ -6,7 +6,7 @@
       <defaultParameters/>
     </jobTemplate>
   </jobTemplates>
-  <workflow id="test_suite" title="Test suite 11" abstract="This test check the ciop.copy with option -U enabled (no default untar file)">
+  <workflow id="test_suite" title="Test suite 12" abstract="This test check the ciop.copy default behaviour (-f, -o) decompressing file automatically">
     <workflowVersion>1.0</workflowVersion>
     <node id="node1">
       <job id="template1"></job>

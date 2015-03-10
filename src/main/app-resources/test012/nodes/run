@@ -1,0 +1,63 @@
+#!/opt/anaconda/bin/python
+import sys
+import os
+import os.path
+import atexit
+import tarfile
+
+# import the ciop functions (e.g. copy, log)
+import cioppy
+
+ciop = cioppy.Cioppy()
+
+# define the exit codes
+SUCCESS = 0
+ERR_NOINPUT = 1
+
+# add a trap to exit gracefully
+def clean_exit(exit_code):
+    log_level = 'INFO'
+    if exit_code != SUCCESS:
+        log_level = 'ERROR'
+
+    msg = { SUCCESS: 'Processing successfully concluded',
+           ERR_NOINPUT: 'No input provided'}
+
+    ciop.log(log_level, msg[exit_code])
+
+def main():
+    isEmpty_output_path = True
+    output_path = os.path.join(ciop.tmp_dir, 'output')
+    os.makedirs(output_path)
+   
+    # check output_path is an empty folder
+    if not os.listdir(output_path):
+        ciop.log("INFO", "The "+ output_path +" is an empty folder")
+    else:
+        ciop.log("ERROR", "The "+ output_path +" is not empty")
+        isEmpty_output_path = False
+    assert(isEmpty_output_path == True)
+
+     # Loops over all the inputs
+    for inputfile in sys.stdin:
+        # report activity in log
+        ciop.log('INFO', 'The input file is: ' + inputfile.rstrip('\n'))
+        prod = ciop.copy(inputfile, output_path, True)
+        print(inputfile.rstrip('\n') + " copied in " + prod)
+        
+        # get the base filename (no extension)
+        file_baseName = os.path.basename(prod).split('.')[0]
+
+        # show the compressed file was automatically decompressed in the folder
+        assert(os.path.isfile(os.path.join(output_path, file_baseName)) == True)
+        ciop.log("INFO", "The " + os.path.basename(prod) + " is succesfully decompressed as " + file_baseName + " under the " + output_path + " path")
+        
+# execute test
+try:
+    main()
+except SystemExit as e:
+    if e.args[0]:
+        clean_exit(e.args[0])
+    raise
+else:
+    atexit.register(clean_exit, 0)
