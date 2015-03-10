@@ -3,7 +3,6 @@ import sys
 import os
 import os.path
 import atexit
-import tarfile
 
 # import the ciop functions (e.g. copy, log)
 import cioppy
@@ -26,32 +25,29 @@ def clean_exit(exit_code):
     ciop.log(log_level, msg[exit_code])
 
 def main():
-    isEmpty_output_path = True
-    output_path = os.path.join(ciop.tmp_dir, 'output')
-    os.makedirs(output_path)
-   
-    # check output_path is an empty folder
-    if not os.listdir(output_path):
-        ciop.log("INFO", "The "+ output_path +" is an empty folder")
-    else:
-        ciop.log("ERROR", "The "+ output_path +" is not empty")
-        isEmpty_output_path = False
-    assert(isEmpty_output_path == True)
-
+    
+    temp_stderr = sys.stderr
      # Loops over all the inputs
     for inputfile in sys.stdin:
-        # report activity in log
-        ciop.log('INFO', 'The input file is: ' + inputfile.rstrip('\n'))
-        prod = ciop.copy(inputfile, output_path, True)
-        print(inputfile.rstrip('\n') + " copied in " + prod)
         
-        # get the base filename (no extension)
-        file_baseName = os.path.basename(prod).split('.')[0]
+        stderrFile = os.path.join(ciop.tmp_dir, os.path.basename(inputfile)+".log")
+        f = open(stderrFile, "w")
+        
+        sys.stderr = f 
+        key = 'The input file is: ' + inputfile
+        ciop.log('INFO', key)
+        f.close()
+        sys.stderr = temp_stderr 
 
-        # show the compressed file was automatically decompressed in the folder
-        assert(os.path.isfile(os.path.join(output_path, file_baseName)) == True)
-        ciop.log("INFO", "The " + os.path.basename(prod) + " is succesfully decompressed as " + file_baseName + " under the " + output_path + " path")
-        
+        found =False
+        with open(stderrFile) as f:
+            for line in f:
+                    if key in line:
+                        found = True
+
+        assert (found == True)
+        print("Found " + key)
+
 # execute test
 try:
     main()

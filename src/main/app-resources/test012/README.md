@@ -2,4 +2,4 @@
 
 ## Purpose
 
-This test aims to verify the correct behaviour of cioppy.copy with enabled file automatic decompression.
+This test aims to verify the correct behaviour of cioppy.log functionality.

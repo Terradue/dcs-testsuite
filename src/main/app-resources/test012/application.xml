@@ -6,7 +6,7 @@
       <defaultParameters/>
     </jobTemplate>
   </jobTemplates>
-  <workflow id="test_suite" title="Test suite 12" abstract="This test check the ciop.copy default behaviour (-f, -o) decompressing file automatically">
+  <workflow id="test_suite" title="Test suite 12" abstract="This test check the ciop.log functionality">
     <workflowVersion>1.0</workflowVersion>
     <node id="node1">
       <job id="template1"></job>
