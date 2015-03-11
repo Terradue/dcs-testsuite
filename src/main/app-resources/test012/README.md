@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This test aims to verify the correct behaviour of cioppy.log functionality.
+This test aims to verify the correct behaviour of the ciop.copy with default untar file
 
 ## Note:
 

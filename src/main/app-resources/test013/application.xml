@@ -6,7 +6,7 @@
       <defaultParameters/>
     </jobTemplate>
   </jobTemplates>
-  <workflow id="test_suite" title="Test suite 13" abstract="This test check the cioppy.publish with option metalink=False functionality">
+  <workflow id="test_suite" title="Test suite 13" abstract="This test check the ciop.log functionality">
     <workflowVersion>1.0</workflowVersion>
     <node id="node1">
       <job id="template1"></job>
