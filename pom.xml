@@ -93,6 +93,16 @@
 								<resource>
 									<directory>${basedir}/src/main/app-resources/${dcs.test.id}</directory>
 									<filtering>true</filtering>
+									<includes>
+          								<include>**/*.xml</include>
+        							</includes>
+								</resource>
+								<resource>
+									<directory>${basedir}/src/main/app-resources/${dcs.test.id}</directory>
+									<filtering>false</filtering>
+									<excludes>
+          								<exclude>**/*.xml</exclude>
+        							</excludes>
 								</resource>
 							</resources>
 						</configuration>
