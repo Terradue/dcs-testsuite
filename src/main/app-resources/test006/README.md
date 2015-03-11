@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This test aims to verify the correct behaviour of the cioppy.publish with no option (default behaviour)
+This test aims to verify the correct behaviour of the cioppy.publish with no option (default behaviour with option metalink=True)
 
 
 ## Note:

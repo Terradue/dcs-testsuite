@@ -6,7 +6,7 @@
       <defaultParameters/>
     </jobTemplate>
   </jobTemplates>
-  <workflow id="test_suite" title="Test suite 6" abstract="This test check the ciop.publish with no option (default behaviour)">
+  <workflow id="test_suite" title="Test suite 6" abstract="This test check the ciop.publish with no option (default behaviour with option metalink=True)">
     <workflowVersion>1.0</workflowVersion>
     <node id="node1">
       <job id="template1"></job>

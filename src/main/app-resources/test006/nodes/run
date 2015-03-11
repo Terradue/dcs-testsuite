@@ -26,7 +26,7 @@ def clean_exit(exit_code):
     ciop.log(log_level, msg[exit_code])
 
 def main():
-    print("This test aims to verify the correct behaviour of the cioppy.publish with no option (default behaviour)")
+    print("This test aims to verify the correct behaviour of the cioppy.publish with no option (default behaviour with option metalink=True)")
     
     output_path = os.path.join(ciop.tmp_dir, 'output')
     os.makedirs(output_path)
@@ -35,14 +35,22 @@ def main():
     
      # Loops over all the inputs
     for inputfile in sys.stdin:
+        
         # report activity in log
         ciop.log('INFO', 'The input file is: ' + inputfile)
         prod = ciop.copy(inputfile, output_path, True)
+        
         print(inputfile + " copied in " + prod)
+        
         ciop.publish(prod, metalink=True) 
+        
+        ciop.log("INFO", "Check "+ os.path.join(ciop.wf_run_root+'/_results', os.path.basename(prod)) + " exists")
         assert(os.path.isfile(os.path.join(ciop.wf_run_root+'/_results', os.path.basename(prod))) == True)
-        #ciop.log("INFO", "Check "+ os.path.join(os.environ['mapred_local_dir'], "work/tmp/_streaming.results.out") +" exists")
-        #assert(os.path.isfile(os.path.join(os.environ['mapred_local_dir'], "work/tmp/_streaming.results.out")) == True)    
+        ciop.log("INFO", "The "+ os.path.join(ciop.wf_run_root+'/_results', os.path.basename(prod)) + " exists")
+
+        ciop.log("INFO", "Check "+ os.path.join(os.environ['mapred_local_dir'], "work/tmp/_streaming.results.out") +" does not exist")
+        assert(os.path.isfile(os.path.join(os.environ['mapred_local_dir'], "work/tmp/_streaming.results.out")) == False)    
+        ciop.log("INFO", "The "+ os.path.join(os.environ['mapred_local_dir'], "work/tmp/_streaming.results.out") +" does not exist")
 
 
 # execute test
