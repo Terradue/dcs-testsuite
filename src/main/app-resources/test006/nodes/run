@@ -26,6 +26,8 @@ def clean_exit(exit_code):
     ciop.log(log_level, msg[exit_code])
 
 def main():
+    print("This test aims to verify the correct behaviour of the cioppy.publish with no option (default behaviour)")
+    
     output_path = os.path.join(ciop.tmp_dir, 'output')
     os.makedirs(output_path)
 

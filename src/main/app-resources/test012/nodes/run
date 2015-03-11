@@ -26,15 +26,18 @@ def clean_exit(exit_code):
 
 def main():
     
+    print("This test aims to verify the correct behaviour of cioppy.log functionality.")
+
     temp_stderr = sys.stderr
      # Loops over all the inputs
     for inputfile in sys.stdin:
-        
+        key = 'The input file is: ' + inputfile
+        ciop.log('INFO', key)
+
         stderrFile = os.path.join(ciop.tmp_dir, os.path.basename(inputfile)+".log")
         f = open(stderrFile, "w")
         
         sys.stderr = f 
-        key = 'The input file is: ' + inputfile
         ciop.log('INFO', key)
         f.close()
         sys.stderr = temp_stderr 

@@ -26,6 +26,9 @@ def clean_exit(exit_code):
     ciop.log(log_level, msg[exit_code])
 
 def main():
+    
+    print("This test aims to verify the correct behaviour of the cioppy.getparam")
+
     ciop.log("INFO", "Retrieve the param value from the application.xml file.")
     param_1 = ciop.getparam('test_1')
     param_2 = ciop.getparam('test_2')
