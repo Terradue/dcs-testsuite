@@ -1,0 +1,74 @@
+#!/opt/anaconda/bin/python
+import sys
+import os
+import os.path
+import atexit
+
+# import the ciop functions (e.g. copy, log)
+import cioppy
+
+ciop = cioppy.Cioppy()
+
+# define the exit codes
+SUCCESS = 0
+ERR_NOINPUT = 1
+
+# add a trap to exit gracefully
+def clean_exit(exit_code):
+    log_level = 'INFO'
+    if exit_code != SUCCESS:
+        log_level = 'ERROR'
+
+    msg = { SUCCESS: 'Processing successfully concluded',
+           ERR_NOINPUT: 'No input provided'}
+
+    ciop.log(log_level, msg[exit_code])
+
+def main():
+    
+    print("This test aims to verify the correct default behaviour of cioppy.copy (-f -o options)")
+
+    isEmpty_output_path = True
+    output_path = os.path.join(ciop.tmp_dir, 'output')
+    os.makedirs(output_path)
+   
+    # check output_path is an empty folder
+    if not os.listdir(output_path):
+        ciop.log("INFO", "The "+ output_path +" is an empty folder")
+    else:
+        ciop.log("ERROR", "The "+ output_path +" is not empty")
+        isEmpty_output_path = False
+    assert(isEmpty_output_path == True)
+
+     # Loops over all the inputs
+    for inputfile in sys.stdin:
+        # report activity in log
+        ciop.log('INFO', 'The input file is: ' + inputfile.rstrip('\n'))
+        prod = ciop.copy(inputfile, output_path, True)
+        print(inputfile.rstrip('\n') + " copied in " + prod)
+        
+        # check file is in the desired folder
+        assert(os.path.isfile(prod) == True)
+        ciop.log("INFO", "The " + os.path.basename(prod) + " is succesfully copied under the " + output_path + " path")
+
+        # check file is not a symlink
+        assert(os.path.islink(prod) == False)        
+        ciop.log("INFO", "The " + os.path.basename(prod) + " copied under the " + output_path + " path is not a symlink")
+
+        # try to copy the file again in the same path
+        try:
+            ciop.log("INFO", "Try to copy the " + inputfile.rstrip('\n') + " file again under the same path " + output_path )
+            prod2 = ciop.copy(inputfile, output_path, True)
+        except:
+            ciop.log("INFO", "An existing file or directory conflicts with the sink for the URL in the output directory")
+            pass
+
+# execute test
+try:
+    main()
+except SystemExit as e:
+    if e.args[0]:
+        clean_exit(e.args[0])
+    raise
+else:
+    atexit.register(clean_exit, 0)

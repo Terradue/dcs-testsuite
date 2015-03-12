@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application id="test_suite">
+  <jobTemplates>
+    <jobTemplate id="template1">
+      <streamingExecutable>/application/nodes/run</streamingExecutable>
+      <defaultParameters/>
+    </jobTemplate>
+  </jobTemplates>
+  <workflow id="test_suite" title="Test suite 6" abstract="This test check the ciop.publish with no option (default behaviour with option metalink=True)">
+    <workflowVersion>1.0</workflowVersion>
+    <node id="node1">
+      <job id="template1"></job>
+      <sources>
+        <source refid="file:urls">/application/inputs/list</source>
+      </sources>
+      <parameters/>
+    </node>
+  </workflow>
+</application>

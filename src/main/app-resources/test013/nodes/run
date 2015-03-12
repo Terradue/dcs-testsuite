@@ -1,0 +1,62 @@
+#!/opt/anaconda/bin/python
+import sys
+import os
+import os.path
+import atexit
+
+# import the ciop functions (e.g. copy, log)
+import cioppy
+
+ciop = cioppy.Cioppy()
+
+# define the exit codes
+SUCCESS = 0
+ERR_NOINPUT = 1
+
+# add a trap to exit gracefully
+def clean_exit(exit_code):
+    log_level = 'INFO'
+    if exit_code != SUCCESS:
+        log_level = 'ERROR'
+
+    msg = { SUCCESS: 'Processing successfully concluded',
+           ERR_NOINPUT: 'No input provided'}
+
+    ciop.log(log_level, msg[exit_code])
+
+def main():
+    
+    print("This test aims to verify the correct behaviour of cioppy.log functionality.")
+
+    temp_stderr = sys.stderr
+     # Loops over all the inputs
+    for inputfile in sys.stdin:
+        key = 'The input file is: ' + inputfile
+        ciop.log('INFO', key)
+
+        stderrFile = os.path.join(ciop.tmp_dir, os.path.basename(inputfile)+".log")
+        f = open(stderrFile, "w")
+        
+        sys.stderr = f 
+        ciop.log('INFO', key)
+        f.close()
+        sys.stderr = temp_stderr 
+
+        found =False
+        with open(stderrFile) as f:
+            for line in f:
+                    if key in line:
+                        found = True
+
+        assert (found == True)
+        print("Found " + key)
+
+# execute test
+try:
+    main()
+except SystemExit as e:
+    if e.args[0]:
+        clean_exit(e.args[0])
+    raise
+else:
+    atexit.register(clean_exit, 0)

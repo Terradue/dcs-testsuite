@@ -1,0 +1,63 @@
+#!/opt/anaconda/bin/python
+import sys
+import os
+import os.path
+import atexit
+
+
+# import the ciop functions (e.g. copy, log)
+import cioppy
+
+ciop = cioppy.Cioppy()
+
+# define the exit codes
+SUCCESS = 0
+ERR_NOINPUT = 1
+
+# add a trap to exit gracefully
+def clean_exit(exit_code):
+    log_level = 'INFO'
+    if exit_code != SUCCESS:
+        log_level = 'ERROR'
+
+    msg = { SUCCESS: 'Processing successfully concluded',
+           ERR_NOINPUT: 'No input provided'}
+
+    ciop.log(log_level, msg[exit_code])
+
+def main():
+    print("This test aims to verify the correct behaviour of cioppy.publish with option metalink=False.")
+    
+    output_path = os.path.join(ciop.tmp_dir, 'output')
+    os.makedirs(output_path)
+
+    ciop.wf_run_root = os.path.join(os.environ['_CIOP_SHARE_PATH'], os.environ['ciop_wf_run_root'][1:])
+    
+     # Loops over all the inputs
+    for inputfile in sys.stdin:
+
+        # report activity in log
+        ciop.log('INFO', 'The input file is: ' + inputfile)
+        prod = ciop.copy(inputfile, output_path, False)
+
+        print(inputfile + " copied in " + prod)
+        ciop.publish(prod) 
+
+        ciop.log("INFO", "Check "+ os.path.join(ciop.wf_run_root+'/_results', os.path.basename(prod)) +" does not exist")
+        assert(os.path.isfile(os.path.join(ciop.wf_run_root+'/_results', os.path.basename(prod))) == False)
+        ciop.log("INFO", "The "+ os.path.join(ciop.wf_run_root+'/_results', os.path.basename(prod)) +" does not exist")
+
+        print("Checking...."+os.path.join(os.environ['mapred_local_dir'], "work/tmp/_streaming.results.out"))
+        assert(os.path.exists(os.path.join(os.environ['mapred_local_dir'], "work/tmp","_streaming.results.out")) == True)    
+        ciop.log("INFO", "The "+ os.path.join(os.environ['mapred_local_dir'], "work/tmp/_streaming.results.out") +" exists")
+
+
+# execute test
+try:
+    main()
+except SystemExit as e:
+    if e.args[0]:
+        clean_exit(e.args[0])
+    raise
+else:
+    atexit.register(clean_exit, 0)
