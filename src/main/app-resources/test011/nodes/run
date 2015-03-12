@@ -48,7 +48,6 @@ def main():
         prod = ciop.copy(inputfile, output_path, False)
         print(inputfile.rstrip('\n') + " copied in " + prod)
         
-        # get the base filename (no extension)
         file_baseName = os.path.basename(prod).split('.')[0]
 
         # check file is in the desired folder

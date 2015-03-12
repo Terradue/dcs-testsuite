@@ -56,8 +56,6 @@ def main():
         ciop.log('INFO', 'Checking ' + os.path.join(ciop.wf_run_root+'/_results', base_output_dir, os.path.basename(inputfile.rstrip('\n'))))
         assert(os.path.isfile(os.path.join(ciop.wf_run_root+'/_results', base_output_dir, os.path.basename(inputfile.rstrip('\n')))) == True)
         ciop.log("INFO", os.path.join(ciop.wf_run_root+'/_results', base_output_dir, os.path.basename(inputfile.rstrip('\n'))) + " verified" )
-
-        #assert(os.path.isfile(os.path.join(os.environ['mapred_local_dir'], "work/tmp/_streaming.results.out")) == True)    
         
 # execute test
 try:

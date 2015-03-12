@@ -39,16 +39,16 @@ def main():
         # report activity in log
         ciop.log('INFO', 'The input file is: ' + inputfile)
         prod = ciop.copy(inputfile, output_path, False)
-        
+
         print(inputfile + " copied in " + prod)
         ciop.publish(prod) 
-        
-	ciop.log("INFO", "Check "+ os.path.join(ciop.wf_run_root+'/_results', os.path.basename(prod)) +" does not exist")
+
+        ciop.log("INFO", "Check "+ os.path.join(ciop.wf_run_root+'/_results', os.path.basename(prod)) +" does not exist")
         assert(os.path.isfile(os.path.join(ciop.wf_run_root+'/_results', os.path.basename(prod))) == False)
         ciop.log("INFO", "The "+ os.path.join(ciop.wf_run_root+'/_results', os.path.basename(prod)) +" does not exist")
 
         print("Checking...."+os.path.join(os.environ['mapred_local_dir'], "work/tmp/_streaming.results.out"))
-	assert(os.path.exists(os.path.join(os.environ['mapred_local_dir'], "work/tmp","_streaming.results.out")) == True)    
+        assert(os.path.exists(os.path.join(os.environ['mapred_local_dir'], "work/tmp","_streaming.results.out")) == True)    
         ciop.log("INFO", "The "+ os.path.join(os.environ['mapred_local_dir'], "work/tmp/_streaming.results.out") +" exists")
 
 

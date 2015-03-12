@@ -30,9 +30,7 @@ def main():
 
     # Loops over all the inputs
     for inputfile in sys.stdin:
-        ciop.log("INFO", "Recived" + inputfile.rstrip('\n') )
-        #assert(os.path.isfile(os.path.join(os.environ['mapred_local_dir'], "work/tmp/_streaming.results.out")) == False)    
-    
+        ciop.log("INFO", "Recived" + inputfile.rstrip('\n') )   
 
 # execute test
 try:

@@ -52,7 +52,6 @@ def main():
         assert(os.path.isfile(os.path.join(os.environ['mapred_local_dir'], "work/tmp/_streaming.results.out")) == False)    
         ciop.log("INFO", "The "+ os.path.join(os.environ['mapred_local_dir'], "work/tmp/_streaming.results.out") +" does not exist")
 
-
 # execute test
 try:
     main()

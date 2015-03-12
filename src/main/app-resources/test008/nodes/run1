@@ -36,7 +36,7 @@ def main():
         assert(os.path.isfile(retrieved) == True)
         ciop.log("INFO", "Retrieved " + retrieved)
 
-        file_to_publish = os.path.join(ciop.tmp_dir, os.path.basename(inputfile)) #"sample*"
+        file_to_publish = os.path.join(ciop.tmp_dir, os.path.basename(inputfile))
 
         ciop.log("INFO", "Publishing result (" + file_to_publish + ")")
 
@@ -46,9 +46,6 @@ def main():
 
         print(text_on_screen)
         silent_publishing = ciop.publish(text_on_screen , mode='silent')     
-
-        # ${mapred_local_dir}/work/tmp/_streaming.results.out must not exist
-        #assert(os.path.isfile(os.path.join(os.environ['mapred_local_dir'], "work/tmp/_streaming.results.out")) == False)    
 
 # execute test
 try:

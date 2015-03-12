@@ -27,7 +27,7 @@ def clean_exit(exit_code):
 
 def main():
     
-    print("This test check the ciop.copy with default untar file")
+    print("This test checks the ciop.copy with default untar file")
 
     isEmpty_output_path = True
     output_path = os.path.join(ciop.tmp_dir, 'output')
