@@ -7,7 +7,7 @@
 	<packaging>pom</packaging>
 	<name>dcs-testsuite</name>
 	<description>dcs-testsuite</description>
-	<version>0.2-SNAPSHOT</version>
+	<version>0.2</version>
 	<scm>
 		<connection>scm:git:git@github.com:crossi-T2/dcs-testsuite.git</connection>
 		<developerConnection>scm:git:git@github.com:crossi-T2/dcs-testsuite.git</developerConnection>
