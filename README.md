@@ -14,7 +14,7 @@ $ sudo yum install -y esa-beam-4.11 ImageMagick
 
 ```bash
 cd ~
-git clone git@github.com:crossi-T2/dcs-testsuite.git
+git clone git@github.com:Terradue/dcs-testsuite.git
 cd dcs-testsuite
 mvn clean install -Ddcs.test.id=testid
 ```
