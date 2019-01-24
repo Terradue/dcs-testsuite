@@ -41,3 +41,4 @@ mvn clean install -Ddcs.test.id=test001
 * [test012 - cioppy: cioppy.copy, automatic decompression enabled](src/main/app-resources/test012/README.md)
 * [test013 - cioppy: cioppy.log](src/main/app-resources/test013/README.md)
 * [test014 - cioppy: cioppy.publish, metalink = false](src/main/app-resources/test014/README.md)
+* [test015 - cioppy.publish and cioppy.getparam / Python 3.5](src/main/app-resources/test015/README.md)
